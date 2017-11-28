@@ -1,3 +1,5 @@
+$(shell mkdir -p tmp/png out)
+
 name   = builder
 docker = docker run --volume=$(shell pwd):/input:rw --rm $(name)
 
@@ -36,7 +38,6 @@ tmp/image.png: src/slides.svg
 ########################################
 
 bootstrap: .image
-	mkdir -p tmp out
 
 .image: Dockerfile
 	docker build -t $(name) .
