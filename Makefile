@@ -1,7 +1,11 @@
 $(shell mkdir -p tmp/png out)
 
 name   = builder
-docker = docker run --volume=$(shell pwd):/input:rw --rm $(name)
+docker = docker \
+	   run \
+	   --volume=$(shell pwd):/mnt:rw \
+	   --rm \
+	   $(name)
 
 PERCENT    := %
 dimensions := "2000x1500"
@@ -15,23 +19,23 @@ out/%.pdf: data/%.txt tmp/slides.pdf
 tmp/slides.pdf: tmp/png/.complete
 	convert \
 		-page $(dimensions) \
-		$(dir $<)/*.png \
+		/mnt/*.png \
 		-format pdf \
 		$@
 
 tmp/png/.complete: tmp/image.png
-	mkdir -p $(dir $@)
 	convert \
 		-crop "1x80@" \
 		-resize $(dimensions) \
 		$< \
-		$(dir $@)$(PERCENT)03d.png
+		/mnt/$(PERCENT)03d.png
 	touch $@
 
 tmp/image.png: src/slides.svg
+	$(docker)
 	inkscape \
-		--file=$(shell pwd)/$< \
-		--export-png=$(shell pwd)/$@ \
+		--file=/mnt/$< \
+		--export-png=/mnt/$@ \
 		--export-dpi=100 \
 		--export-area-page
 
