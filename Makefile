@@ -6,9 +6,13 @@ docker = docker run --volume=$(shell pwd):/input:rw --rm $(name)
 PERCENT    := %
 dimensions := "2000x1500"
 
-build: out/slides.pdf
+build: $(patsubst data/%.txt,out/%.pdf,$(shell find data -name '*.txt'))
 
-out/slides.pdf: tmp/png/.complete
+
+out/%.pdf: data/%.txt tmp/slides.pdf
+	pdfjam $(lastword $^) $(cut -f 1 $< | paste -sd "," -) -o $<
+
+tmp/slides.pdf: tmp/png/.complete
 	convert \
 		-page $(dimensions) \
 		$(dir $<)/*.png \
