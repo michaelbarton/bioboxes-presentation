@@ -8,32 +8,36 @@ docker = docker \
 	   $(name)
 
 PERCENT    := %
-dimensions := "2000x1500"
+dimensions := "1000x750"
+papersize  := '{1000px,750px}'
 
 build: $(patsubst data/%.txt,out/%.pdf,$(shell find data -name '*.txt'))
 
 
 out/%.pdf: data/%.txt tmp/slides.pdf
-	pdfjam $(lastword $^) $(cut -f 1 $< | paste -sd "," -) -o $<
+	pdfjam \
+		$(shell pwd)/$(lastword $^) \
+		$(shell cut -f 1 $< | paste -sd "," -) \
+		--papersize  $(papersize) \
+		--outfile $@
 
 tmp/slides.pdf: tmp/png/.complete
-	convert \
+	$(docker) convert \
 		-page $(dimensions) \
 		/mnt/*.png \
 		-format pdf \
-		$@
+		/mnt/$@
 
 tmp/png/.complete: tmp/image.png
-	convert \
+	$(docker) convert \
 		-crop "1x80@" \
 		-resize $(dimensions) \
-		$< \
+		/mnt/$< \
 		/mnt/$(PERCENT)03d.png
 	touch $@
 
 tmp/image.png: src/slides.svg
-	$(docker)
-	inkscape \
+	$(docker) inkscape \
 		--file=/mnt/$< \
 		--export-png=/mnt/$@ \
 		--export-dpi=100 \
