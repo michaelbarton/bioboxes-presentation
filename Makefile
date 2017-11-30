@@ -24,7 +24,7 @@ out/%.pdf: data/%.txt tmp/slides.pdf
 tmp/slides.pdf: tmp/png/.complete
 	$(docker) convert \
 		-page $(dimensions) \
-		/mnt/*.png \
+		/mnt/$(dir $<)*.png \
 		-format pdf \
 		/mnt/$@
 
@@ -33,7 +33,7 @@ tmp/png/.complete: tmp/image.png
 		-crop "1x80@" \
 		-resize $(dimensions) \
 		/mnt/$< \
-		/mnt/$(PERCENT)03d.png
+		/mnt/$(dir $@)$(PERCENT)03d.png
 	touch $@
 
 tmp/image.png: src/slides.svg
