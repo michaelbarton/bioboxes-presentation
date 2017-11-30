@@ -1,15 +1,18 @@
-$(shell mkdir -p tmp/png out)
+$(shell rm -f tmp/imagemagick/*)
+$(shell mkdir -p tmp/png tmp/imagemagick out)
 
 name   = builder
 docker = docker \
 	   run \
 	   --volume=$(shell pwd):/mnt:rw \
+	   --env=MAGICK_TEMPORARY_PATH=/mnt/tmp/imagemagick \
 	   --rm \
 	   $(name)
 
 PERCENT    := %
 dimensions := "1000x750"
 papersize  := '{1000px,750px}'
+n_slides   := 160
 
 build: $(patsubst data/%.txt,out/%.pdf,$(shell find data -name '*.txt'))
 
@@ -30,7 +33,7 @@ tmp/slides.pdf: tmp/png/.complete
 
 tmp/png/.complete: tmp/image.png
 	$(docker) convert \
-		-crop "1x80@" \
+		-crop "1x$(n_slides)@" \
 		-resize $(dimensions) \
 		/mnt/$< \
 		/mnt/$(dir $@)$(PERCENT)03d.png
