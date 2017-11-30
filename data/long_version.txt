@@ -32,3 +32,15 @@
 79	# Docker as a backend
 59	# what value does this provide
 60	# don't have to rewire the whole system
+66	# Publications to testable containers
+33	# Automate process over a large number of genomes
+80	# Benchmarking process overview
+81	# TODO
+82	# TODO
+83	# TODO
+84	# Large matrix of comparison results
+37	# Example large range of values
+85	# Part 3
+86	# What to do with the large matrix
+87	# Compute values for each assembler
+34	# Select best assembler based on performance
