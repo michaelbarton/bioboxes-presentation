@@ -1,0 +1,34 @@
+1	# Title slide
+69	# Part 1 - Introduction
+19	# JGI sequences many organisms
+22	# Genome assembly as part of sequencing process
+9	# A lot of software published about assembly
+70	# Have to compare assemblers from the literature
+71	# Example comparison is contiguity of the assembly
+72	# Repeat for new assemblers
+73	# Boring repetitive work
+74	# Part 2 - Automating software benchmarking
+8	# Problems with benchmarking bioinformatics software
+10	# Can't find software
+11	# ./configure; make; make install
+12	# Exploding software
+13	# Producing poor results
+75	# solution to bioinformatics software problems
+31	# Put software in docker containers
+76	# Solves versioning, accessiblity, bundled pipelines
+47	# Bioboxes
+48	# What is a biobox?
+43	# Function specification
+44	# Fastq function specification
+45	# function specification applied to assembly
+56	# Test this specification
+77	# User interfaces are important
+51	# Bang!
+52	# Running velvet
+52	# Running megahit
+54	# Running megahit with SHA256
+78	# How is biobox executed
+49	# How bioboxes works
+79	# Docker as a backend
+59	# what value does this provide
+60	# don't have to rewire the whole system
