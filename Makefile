@@ -12,7 +12,7 @@ docker = docker \
 PERCENT    := %
 dimensions := "1000x750"
 papersize  := '{1000px,750px}'
-n_slides   := 160
+n_slides   := 120
 
 build: $(patsubst data/%.txt,out/%.pdf,$(shell find data -name '*.txt'))
 
