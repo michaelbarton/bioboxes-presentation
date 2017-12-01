@@ -20,12 +20,12 @@
 48	# What is a biobox?
 43	# Function specification
 44	# Fastq function specification
-45	# function specification applied to assembly
+46	# function specification applied to assembly
 56	# Test this specification
 77	# User interfaces are important
 51	# Bang!
 52	# Running velvet
-52	# Running megahit
+53	# Running megahit
 54	# Running megahit with SHA256
 78	# How is biobox executed
 49	# How bioboxes works
@@ -35,12 +35,47 @@
 66	# Publications to testable containers
 33	# Automate process over a large number of genomes
 80	# Benchmarking process overview
-81	# TODO
-82	# TODO
+81	# Implementation on AWS
+82	# Append only database
+88	# Example JSON payload for task
+89	# Clojure code example
 83	# TODO
 84	# Large matrix of comparison results
+89	# Statistics about data size
 37	# Example large range of values
 85	# Part 3
 86	# What to do with the large matrix
 87	# Compute values for each assembler
-34	# Select best assembler based on performance
+35	# Select best assembler based on performance
+88	# Estimate value for each assembler
+89	# Model structure
+90	# Estimate coefficients
+91	# Poisson-like values
+92	# Model selection
+93	# BIC
+94	# Null model
+95	# Genome null
+96	# Genome and assembler effect
+97	# Compare arguments vs versions
+98	# Different variance structures
+99	# Model implementation
+100	# Model YML
+101	# Parallel model fitting
+102	# Processor usage
+103	# Model checking
+104	# NA50 model fitting
+105	# Misassembly model fitting
+106	# Misassembly model fitting
+107	# Indel model fitting
+108	# annotations as a proxy
+109	# L1 norm model fitting
+84	# Revisit - Large matrix of comparison results
+110	# Part 4 - Summary
+64	# Problems with bioinformatics software
+24	# Hard to compare publications
+25	# confirmation bias
+66	# Standardisation of interfaces
+84	# Exhaustive searching
+84	# Exhaustive searching
+98	# Decomplecting effects
+111	# Closing thought
