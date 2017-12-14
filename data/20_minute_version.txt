@@ -1,0 +1,54 @@
+1	# Title slide
+22	# Genome assembly as part of sequencing process
+9	# A lot of software published about assembly
+70	# Have to compare assemblers from the literature
+71	# Example comparison is contiguity of the assembly
+72	# Repeat for new assemblers
+73	# Boring repetitive work
+8	# Problems with benchmarking bioinformatics software
+10	# Can't find software
+11	# ./configure; make; make install
+12	# Exploding software
+13	# Producing poor results
+75	# solution to bioinformatics software problems
+31	# Put software in docker containers
+76	# Solves versioning, accessiblity, bundled pipelines
+47	# Bioboxes
+60	# don't have to rewire the whole system
+66	# Publications to testable containers
+33	# Automate process over a large number of genomes
+80	# Benchmarking process overview
+81	# Implementation on AWS
+37	# Example large range of percent genome values
+113	# Comparison of contiguity results
+90	# Statistics about data collection
+86	# What to do with the large matrix
+87	# Compute values for each assembler
+35	# Select best assembler based on performance
+91	# Model structure
+92	# Model coefficients
+93	# Poisson variable
+94	# Model choice can bias results
+95	# BIC
+96	# Null model
+97	# Genome null
+98	# Genome and assembler effect
+99	# Compare arguments vs versions
+100	# Different variance structures
+104	# Processor usage
+105	# Model checking
+106	# NA50 model fitting
+107	# Misassembly model fitting
+108	# Indel model fitting
+109	# annotations as a proxy
+80	# Benchmarking process overview
+110	# L1 norm model fitting
+114	# Highlight delta in preprocessing
+115	# Summary
+64	# Problems with bioinformatics software
+24	# Hard to compare publications
+25	# confirmation bias
+66	# Standardisation of interfaces
+98	# Decomplecting effects
+87	# Large matrix of comparison results
+35	# Selecting the best assembler
