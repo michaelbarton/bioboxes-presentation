@@ -25,6 +25,7 @@
 33	# Automate process over a large number of genomes
 80	# Benchmarking process overview
 81	# Implementation on AWS
+90	# Statistics about data collection
 124	# PCA of contiguity metrics
 116	# Raw assembly quality data
 117	# Assembly quality by product type
@@ -32,7 +33,6 @@
 119	# Distribution of la50 * nas50
 120	# Distribution of la50 * nas50 and percent genome
 113	# Comparison of contiguity results
-90	# Statistics about data collection
 125	# Part 3
 86	# What to do with the large matrix
 87	# Compute values for each assembler
