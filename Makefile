@@ -12,7 +12,11 @@ docker = docker \
 PERCENT    := %
 dimensions := "1000x750"
 papersize  := '{1000px,750px}'
-n_slides   := 120
+n_slides   := 135
+
+# Currently each slide is 1500px high.
+# Adding more slides requires adjusting the document by adding 1500*n more slides
+# Then increasing the 'n_slides' by n variable
 
 build: $(patsubst data/%.txt,out/%.pdf,$(shell find data -name '*.txt'))
 
