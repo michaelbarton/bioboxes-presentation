@@ -1,31 +1,52 @@
+$(shell rm -f tmp/imagemagick/*)
+$(shell mkdir -p tmp/png tmp/imagemagick out)
+
 name   = builder
-docker = docker run --volume=$(shell pwd):/input:rw --rm $(name)
+docker = docker \
+	   run \
+	   --volume=$(shell pwd):/mnt:rw \
+	   --env=MAGICK_TEMPORARY_PATH=/mnt/tmp/imagemagick \
+	   --rm \
+	   $(name)
 
 PERCENT    := %
-dimensions := "2000x1500"
+dimensions := "1000x750"
+papersize  := '{1000px,750px}'
+n_slides   := 135
 
-build: out/slides.pdf
+# Currently each slide is 1500px high.
+# Adding more slides requires adjusting the document by adding 1500*n more slides
+# Then increasing the 'n_slides' by n variable
 
-out/slides.pdf: tmp/png/.complete
-	convert \
+build: $(patsubst data/%.txt,out/%.pdf,$(shell find data -name '*.txt'))
+
+
+out/%.pdf: data/%.txt tmp/slides.pdf
+	pdfjam \
+		$(shell pwd)/$(lastword $^) \
+		$(shell cut -f 1 $< | paste -sd "," -) \
+		--papersize  $(papersize) \
+		--outfile $@
+
+tmp/slides.pdf: tmp/png/.complete
+	$(docker) convert \
 		-page $(dimensions) \
-		$(dir $<)/*.png \
+		/mnt/$(dir $<)*.png \
 		-format pdf \
-		$@
+		/mnt/$@
 
 tmp/png/.complete: tmp/image.png
-	mkdir -p $(dir $@)
-	convert \
-		-crop "1x80@" \
+	$(docker) convert \
+		-crop "1x$(n_slides)@" \
 		-resize $(dimensions) \
-		$< \
-		$(dir $@)$(PERCENT)03d.png
+		/mnt/$< \
+		/mnt/$(dir $@)$(PERCENT)03d.png
 	touch $@
 
 tmp/image.png: src/slides.svg
-	inkscape \
-		--file=$(shell pwd)/$< \
-		--export-png=$(shell pwd)/$@ \
+	$(docker) inkscape \
+		--file=/mnt/$< \
+		--export-png=/mnt/$@ \
 		--export-dpi=100 \
 		--export-area-page
 
@@ -36,7 +57,6 @@ tmp/image.png: src/slides.svg
 ########################################
 
 bootstrap: .image
-	mkdir -p tmp out
 
 .image: Dockerfile
 	docker build -t $(name) .
